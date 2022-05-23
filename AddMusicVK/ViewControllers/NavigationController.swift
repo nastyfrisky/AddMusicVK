@@ -7,13 +7,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class NavigationController: UINavigationController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        pushViewController(LoginViewController(), animated: false)
     }
 
+    // MARK: - Private Methods
 
 }
 
