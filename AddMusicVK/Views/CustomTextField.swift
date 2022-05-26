@@ -16,6 +16,8 @@ final class CustomTextField: UITextField {
         
         layer.borderColor = CGColor(red: 0.7, green: 0.7, blue: 0.7, alpha: 1)
         layer.borderWidth = 1
+        
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) { nil }
@@ -26,6 +28,12 @@ final class CustomTextField: UITextField {
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         bounds.insetBy(dx: 10, dy: 0)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
     @objc private func editingBegan() {

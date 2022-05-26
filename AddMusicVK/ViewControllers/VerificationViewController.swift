@@ -1,27 +1,27 @@
 //
-//  RedViewController.swift
+//  VerificationViewController.swift
 //  AddMusicVK
 //
-//  Created by Анастасия Ступникова on 21.05.2022.
+//  Created by Анастасия Ступникова on 23.05.2022.
 //
 
 import Foundation
 import UIKit
 
-final class PasswordViewController: UIViewController {
+final class VerificationViewController:UIViewController {
     let inputField = TextInputField()
     let textFieldViewModel = TextInputFieldViewModel(
-        title: "Введите пароль",
-        subTitle: "Используйте пароль, указанный при регистрации",
-        placeholder: "Введите пароль"
+        title: "Подтвердите номер",
+        subTitle: "Мы отправили SMS на номер",
+        placeholder: "Код подтверждения"
     )
-    let passwordButton = UIButton()
+    let verificationButton = UIButton()
     let imageView = UIImageView()
     let logo = UIImage(named: "logoVK")
-    let login: UserLogin
+    let userData: UserData
     
-    init(login: UserLogin) {
-        self.login = login
+    init(userData: UserData) {
+        self.userData = userData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,18 +29,19 @@ final class PasswordViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         imageView.contentMode = .scaleAspectFit
         
-        passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        passwordButton.setTitle("Продолжить", for: .normal)
-        passwordButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        verificationButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
+        verificationButton.setTitle("Продолжить", for: .normal)
+        verificationButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         
-        passwordButton.layer.cornerRadius = 10
-        passwordButton.clipsToBounds = true
+        verificationButton.layer.cornerRadius = 10
+        verificationButton.clipsToBounds = true
         
         addSubviews()
         setupConstraints()
@@ -56,13 +57,13 @@ final class PasswordViewController: UIViewController {
         imageView.image = logo
         view.addSubview(imageView)
         view.addSubview(inputField)
-        view.addSubview(passwordButton)
+        view.addSubview(verificationButton)
     }
     
     private func setupConstraints() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         inputField.translatesAutoresizingMaskIntoConstraints = false
-        passwordButton.translatesAutoresizingMaskIntoConstraints = false
+        verificationButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -74,26 +75,22 @@ final class PasswordViewController: UIViewController {
         NSLayoutConstraint.activate([
             inputField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
             inputField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.borderSpacing),
-            inputField.bottomAnchor.constraint(equalTo: passwordButton.topAnchor, constant: -Constants.borderSpacing)
+            inputField.bottomAnchor.constraint(equalTo: verificationButton.topAnchor, constant: -Constants.borderSpacing)
         ])
         
         NSLayoutConstraint.activate([
-            passwordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
-            passwordButton.trailingAnchor.constraint(
+            verificationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
+            verificationButton.trailingAnchor.constraint(
                 equalTo: view.trailingAnchor,
                 constant: -Constants.borderSpacing
             ),
-            passwordButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            passwordButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
+            verificationButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            verificationButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
     }
     
     @objc private func buttonTap() {
-        guard let text = inputField.inputField.text, !text.isEmpty else { return }
-        
-        let userData = UserData(login: login.login, password: text)
-        let nextVC = VerificationViewController(userData: userData)
-        
+        let nextVC = UserIDViewController()
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class TextInputField: UIView {
+final class TextInputField: UIStackView {
     let title = UILabel()
     let subTitle = UILabel()
     let inputField = CustomTextField()
@@ -16,11 +16,13 @@ final class TextInputField: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubviews()
-        setupConstraints()
+        setupStackView()
         setupSubviews()
     }
     
-    required init?(coder: NSCoder) { nil }
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func configure(text: TextInputFieldViewModel) {
         title.text = text.title
@@ -29,34 +31,14 @@ final class TextInputField: UIView {
     }
     
     private func addSubviews() {
-        addSubview(title)
-        addSubview(subTitle)
-        addSubview(inputField)
+        addArrangedSubview(title)
+        addArrangedSubview(subTitle)
+        addArrangedSubview(inputField)
     }
-    private func setupConstraints() {
-        title.translatesAutoresizingMaskIntoConstraints = false
-        subTitle.translatesAutoresizingMaskIntoConstraints = false
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: topAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
-            subTitle.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 15),
-            subTitle.leadingAnchor.constraint(equalTo: leadingAnchor),
-            subTitle.trailingAnchor.constraint(equalTo: trailingAnchor),
-            subTitle.bottomAnchor.constraint(equalTo: inputField.topAnchor, constant: -15)
-        ])
-
-        NSLayoutConstraint.activate([
-            inputField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            inputField.trailingAnchor.constraint(equalTo: trailingAnchor),
-            inputField.bottomAnchor.constraint(equalTo: bottomAnchor),
-            inputField.heightAnchor.constraint(equalToConstant: 40)
-        ])
+    
+    private func setupStackView() {
+        axis = .vertical
+        spacing = 15
     }
     
     private func setupSubviews() {

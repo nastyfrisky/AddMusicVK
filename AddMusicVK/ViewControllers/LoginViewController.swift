@@ -37,6 +37,11 @@ final class LoginViewController: UIViewController {
         inputField.configure(text: textFieldViewModel)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
     private func addSubviews() {
         imageView.image = logo
         view.addSubview(imageView)
@@ -50,29 +55,38 @@ final class LoginViewController: UIViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 100),
-            imageView.widthAnchor.constraint(equalToConstant: 100)
-            
+            imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize),
+            imageView.widthAnchor.constraint(equalToConstant: Constants.iconSize),
+            imageView.bottomAnchor.constraint(equalTo: inputField.topAnchor, constant: -Constants.borderSpacing)
         ])
         
         NSLayoutConstraint.activate([
-            inputField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            inputField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            inputField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor)
+            inputField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
+            inputField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.borderSpacing),
+            inputField.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -Constants.borderSpacing)
         ])
         
         NSLayoutConstraint.activate([
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            loginButton.heightAnchor.constraint(equalToConstant: 40)
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
+            loginButton.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -Constants.borderSpacing
+            ),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
     }
     
     @objc private func buttonTap() {
-        let nextVC = PasswordViewController()
+        guard let text = inputField.inputField.text, !text.isEmpty else {
+            showAlert(error: "Введите логин!")
+            return
+        }
+        
+        let login = UserLogin(login: text)
+        let nextVC = PasswordViewController(login: login)
+        
         navigationController?.pushViewController(nextVC, animated: true)
     }
 }

@@ -18,6 +18,12 @@
 		4DD44D142839363400735B68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D132839363400735B68 /* LoginViewController.swift */; };
 		4DD44D17283A6E8800735B68 /* TextInputFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */; };
 		4DD44D19283AA7B000735B68 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D18283AA7B000735B68 /* CustomTextField.swift */; };
+		4DD44D1C283B807E00735B68 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D1B283B807E00735B68 /* Constants.swift */; };
+		4DD44D1E283BA01000735B68 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D1D283BA01000735B68 /* VerificationViewController.swift */; };
+		4DD44D20283BA02F00735B68 /* UserIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D1F283BA02F00735B68 /* UserIDViewController.swift */; };
+		4DD44D22283BA05F00735B68 /* TrackListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D21283BA05F00735B68 /* TrackListViewController.swift */; };
+		4DD44D24283BA3BB00735B68 /* DataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D23283BA3BB00735B68 /* DataFlow.swift */; };
+		4DD44D28283CF15500735B68 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D27283CF15500735B68 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		4DD44D132839363400735B68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputFieldViewModel.swift; sourceTree = "<group>"; };
 		4DD44D18283AA7B000735B68 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		4DD44D1B283B807E00735B68 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4DD44D1D283BA01000735B68 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		4DD44D1F283BA02F00735B68 /* UserIDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIDViewController.swift; sourceTree = "<group>"; };
+		4DD44D21283BA05F00735B68 /* TrackListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackListViewController.swift; sourceTree = "<group>"; };
+		4DD44D23283BA3BB00735B68 /* DataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlow.swift; sourceTree = "<group>"; };
+		4DD44D27283CF15500735B68 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +78,8 @@
 		4D7EC98E28391CC200530873 /* AddMusicVK */ = {
 			isa = PBXGroup;
 			children = (
+				4DD44D26283CF0E600735B68 /* Extensions */,
+				4DD44D1A283B806A00735B68 /* Constants */,
 				4DD44D15283A6D7800735B68 /* Models */,
 				4DD44D0E28392CA600735B68 /* Views */,
 				4D7EC9A528391EED00530873 /* ViewControllers */,
@@ -99,6 +113,9 @@
 				4D7EC99328391CC200530873 /* NavigationController.swift */,
 				4DD44D132839363400735B68 /* LoginViewController.swift */,
 				4DD44D11283933FF00735B68 /* PasswordViewController.swift */,
+				4DD44D1D283BA01000735B68 /* VerificationViewController.swift */,
+				4DD44D1F283BA02F00735B68 /* UserIDViewController.swift */,
+				4DD44D21283BA05F00735B68 /* TrackListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -126,8 +143,25 @@
 			isa = PBXGroup;
 			children = (
 				4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */,
+				4DD44D23283BA3BB00735B68 /* DataFlow.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4DD44D1A283B806A00735B68 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				4DD44D1B283B807E00735B68 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		4DD44D26283CF0E600735B68 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4DD44D27283CF15500735B68 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,12 +237,18 @@
 			files = (
 				4DD44D12283933FF00735B68 /* PasswordViewController.swift in Sources */,
 				4DD44D1028392D3D00735B68 /* TextInputField.swift in Sources */,
+				4DD44D1E283BA01000735B68 /* VerificationViewController.swift in Sources */,
+				4DD44D24283BA3BB00735B68 /* DataFlow.swift in Sources */,
+				4DD44D28283CF15500735B68 /* UIViewController+Extension.swift in Sources */,
+				4DD44D20283BA02F00735B68 /* UserIDViewController.swift in Sources */,
 				4D7EC99428391CC200530873 /* NavigationController.swift in Sources */,
 				4D7EC99028391CC200530873 /* AppDelegate.swift in Sources */,
 				4DD44D19283AA7B000735B68 /* CustomTextField.swift in Sources */,
 				4DD44D17283A6E8800735B68 /* TextInputFieldViewModel.swift in Sources */,
+				4DD44D22283BA05F00735B68 /* TrackListViewController.swift in Sources */,
 				4DD44D142839363400735B68 /* LoginViewController.swift in Sources */,
 				4D7EC99228391CC200530873 /* SceneDelegate.swift in Sources */,
+				4DD44D1C283B807E00735B68 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
