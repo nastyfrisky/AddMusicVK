@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1FEE27284BB795000268C7 /* CaptchaTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FEE26284BB795000268C7 /* CaptchaTextInput.swift */; };
+		4D1FEE2928550870000268C7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1FEE2828550870000268C7 /* Button.swift */; };
 		4D7EC99028391CC200530873 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EC98F28391CC200530873 /* AppDelegate.swift */; };
 		4D7EC99228391CC200530873 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EC99128391CC200530873 /* SceneDelegate.swift */; };
 		4D7EC99428391CC200530873 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7EC99328391CC200530873 /* NavigationController.swift */; };
 		4D7EC99728391CC200530873 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D7EC99528391CC200530873 /* Main.storyboard */; };
 		4D7EC99928391CC400530873 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D7EC99828391CC400530873 /* Assets.xcassets */; };
 		4D7EC99C28391CC400530873 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D7EC99A28391CC400530873 /* LaunchScreen.storyboard */; };
+		4D968E9C2843D78100E13D08 /* VkServiceProcessMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968E9B2843D78100E13D08 /* VkServiceProcessMusic.swift */; };
+		4D968E9E2843F80E00E13D08 /* VkServiceProcessSignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968E9D2843F80E00E13D08 /* VkServiceProcessSignIn.swift */; };
+		4D968EA02843F86300E13D08 /* VkServiceProcessProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968E9F2843F86300E13D08 /* VkServiceProcessProtocol.swift */; };
+		4D968EA22843F90700E13D08 /* VkServiceScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968EA12843F90700E13D08 /* VkServiceScripts.swift */; };
+		4D968EA42843F9E100E13D08 /* VkServiceEnterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968EA32843F9E100E13D08 /* VkServiceEnterRequest.swift */; };
+		4D968EA62843F9F900E13D08 /* VkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D968EA52843F9F900E13D08 /* VkService.swift */; };
 		4DD44D1028392D3D00735B68 /* TextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D0F28392D3D00735B68 /* TextInputField.swift */; };
 		4DD44D12283933FF00735B68 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D11283933FF00735B68 /* PasswordViewController.swift */; };
 		4DD44D142839363400735B68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D132839363400735B68 /* LoginViewController.swift */; };
@@ -27,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D1FEE26284BB795000268C7 /* CaptchaTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptchaTextInput.swift; sourceTree = "<group>"; };
+		4D1FEE2828550870000268C7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		4D7EC98C28391CC200530873 /* AddMusicVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AddMusicVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7EC98F28391CC200530873 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D7EC99128391CC200530873 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +45,12 @@
 		4D7EC99828391CC400530873 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D7EC99B28391CC400530873 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D7EC99D28391CC400530873 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D968E9B2843D78100E13D08 /* VkServiceProcessMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkServiceProcessMusic.swift; sourceTree = "<group>"; };
+		4D968E9D2843F80E00E13D08 /* VkServiceProcessSignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkServiceProcessSignIn.swift; sourceTree = "<group>"; };
+		4D968E9F2843F86300E13D08 /* VkServiceProcessProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkServiceProcessProtocol.swift; sourceTree = "<group>"; };
+		4D968EA12843F90700E13D08 /* VkServiceScripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkServiceScripts.swift; sourceTree = "<group>"; };
+		4D968EA32843F9E100E13D08 /* VkServiceEnterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkServiceEnterRequest.swift; sourceTree = "<group>"; };
+		4D968EA52843F9F900E13D08 /* VkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkService.swift; sourceTree = "<group>"; };
 		4DD44D0F28392D3D00735B68 /* TextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputField.swift; sourceTree = "<group>"; };
 		4DD44D11283933FF00735B68 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4DD44D132839363400735B68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +94,7 @@
 		4D7EC98E28391CC200530873 /* AddMusicVK */ = {
 			isa = PBXGroup;
 			children = (
+				4D968E9A2843D71D00E13D08 /* VkService */,
 				4DD44D26283CF0E600735B68 /* Extensions */,
 				4DD44D1A283B806A00735B68 /* Constants */,
 				4DD44D15283A6D7800735B68 /* Models */,
@@ -130,11 +147,26 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		4D968E9A2843D71D00E13D08 /* VkService */ = {
+			isa = PBXGroup;
+			children = (
+				4D968EA52843F9F900E13D08 /* VkService.swift */,
+				4D968EA32843F9E100E13D08 /* VkServiceEnterRequest.swift */,
+				4D968EA12843F90700E13D08 /* VkServiceScripts.swift */,
+				4D968E9F2843F86300E13D08 /* VkServiceProcessProtocol.swift */,
+				4D968E9D2843F80E00E13D08 /* VkServiceProcessSignIn.swift */,
+				4D968E9B2843D78100E13D08 /* VkServiceProcessMusic.swift */,
+			);
+			path = VkService;
+			sourceTree = "<group>";
+		};
 		4DD44D0E28392CA600735B68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4DD44D0F28392D3D00735B68 /* TextInputField.swift */,
 				4DD44D18283AA7B000735B68 /* CustomTextField.swift */,
+				4D1FEE26284BB795000268C7 /* CaptchaTextInput.swift */,
+				4D1FEE2828550870000268C7 /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,20 +267,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D968E9E2843F80E00E13D08 /* VkServiceProcessSignIn.swift in Sources */,
 				4DD44D12283933FF00735B68 /* PasswordViewController.swift in Sources */,
 				4DD44D1028392D3D00735B68 /* TextInputField.swift in Sources */,
 				4DD44D1E283BA01000735B68 /* VerificationViewController.swift in Sources */,
+				4D968EA62843F9F900E13D08 /* VkService.swift in Sources */,
 				4DD44D24283BA3BB00735B68 /* DataFlow.swift in Sources */,
+				4D968E9C2843D78100E13D08 /* VkServiceProcessMusic.swift in Sources */,
 				4DD44D28283CF15500735B68 /* UIViewController+Extension.swift in Sources */,
 				4DD44D20283BA02F00735B68 /* UserIDViewController.swift in Sources */,
+				4D968EA42843F9E100E13D08 /* VkServiceEnterRequest.swift in Sources */,
 				4D7EC99428391CC200530873 /* NavigationController.swift in Sources */,
+				4D968EA22843F90700E13D08 /* VkServiceScripts.swift in Sources */,
 				4D7EC99028391CC200530873 /* AppDelegate.swift in Sources */,
+				4D1FEE27284BB795000268C7 /* CaptchaTextInput.swift in Sources */,
 				4DD44D19283AA7B000735B68 /* CustomTextField.swift in Sources */,
 				4DD44D17283A6E8800735B68 /* TextInputFieldViewModel.swift in Sources */,
+				4D968EA02843F86300E13D08 /* VkServiceProcessProtocol.swift in Sources */,
 				4DD44D22283BA05F00735B68 /* TrackListViewController.swift in Sources */,
 				4DD44D142839363400735B68 /* LoginViewController.swift in Sources */,
 				4D7EC99228391CC200530873 /* SceneDelegate.swift in Sources */,
 				4DD44D1C283B807E00735B68 /* Constants.swift in Sources */,
+				4D1FEE2928550870000268C7 /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -378,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -393,6 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = S34BZ3639A;
@@ -403,7 +444,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -411,6 +452,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nastia.AddMusicVK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -432,7 +474,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
