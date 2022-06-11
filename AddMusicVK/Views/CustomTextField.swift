@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 final class CustomTextField: UITextField {
+    
+    // MARK: - Initializers
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -22,6 +25,8 @@ final class CustomTextField: UITextField {
     
     required init?(coder: NSCoder) { nil }
     
+    // MARK: - Override Methods
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         bounds.insetBy(dx: 10, dy: 0)
     }
@@ -30,9 +35,11 @@ final class CustomTextField: UITextField {
         bounds.insetBy(dx: 10, dy: 0)
     }
     
+    // MARK: - Private Methods
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: 40)
+            heightAnchor.constraint(equalToConstant: Constants.textFieldHeight)
         ])
     }
     
