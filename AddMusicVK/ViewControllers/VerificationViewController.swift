@@ -8,20 +8,27 @@
 import Foundation
 import UIKit
 
-final class VerificationViewController:UIViewController {
-    let inputField = TextInputField()
-    let textFieldViewModel = TextInputFieldViewModel(
+final class VerificationViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
+    private let inputField = TextInputField()
+    private let textFieldViewModel = TextInputFieldViewModel(
         title: "Подтвердите номер",
         subTitle: "Мы отправили SMS на номер",
         placeholder: "Код подтверждения"
     )
-    let verificationButton = UIButton()
-    let imageView = UIImageView()
-    let logo = UIImage(named: "logoVK")
-    let userData: UserData
+    private let verificationButton = UIButton()
+    private let imageView = UIImageView()
+    private let logo = UIImage(named: "logoVK")
+    private let callback: VkServiceEnterRequestProtocol
+    private let isErrorShowed: Bool
     
-    init(userData: UserData) {
-        self.userData = userData
+    // MARK: - Initializers
+    
+    init(callback: VkServiceEnterRequestProtocol, isErrorShowed: Bool) {
+        self.callback = callback
+        self.isErrorShowed = isErrorShowed
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,6 +36,7 @@ final class VerificationViewController:UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,21 +44,34 @@ final class VerificationViewController:UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         
+        addSubviews()
+        setupButton()
+        setupConstraints()
+        inputField.configure(text: textFieldViewModel)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if isErrorShowed {
+            showAlert(title: "Ошибка", message: "Неверный код!")
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupButton() {
         verificationButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
         verificationButton.setTitle("Продолжить", for: .normal)
         verificationButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
         
         verificationButton.layer.cornerRadius = 10
         verificationButton.clipsToBounds = true
-        
-        addSubviews()
-        setupConstraints()
-        inputField.configure(text: textFieldViewModel)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
     }
     
     private func addSubviews() {
@@ -61,10 +82,10 @@ final class VerificationViewController:UIViewController {
     }
     
     private func setupConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        verificationButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        [imageView, inputField, verificationButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize),
@@ -90,7 +111,12 @@ final class VerificationViewController:UIViewController {
     }
     
     @objc private func buttonTap() {
-        let nextVC = UserIDViewController()
-        navigationController?.pushViewController(nextVC, animated: true)
+        guard let text = inputField.inputField.text, !text.isEmpty else {
+            showAlert(title: "Ошибка", message: "Введите код!")
+            return
+        }
+
+        callback.enter(response: text)
+        dismiss(animated: true)
     }
 }

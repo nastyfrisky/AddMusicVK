@@ -9,15 +9,20 @@ import Foundation
 import UIKit
 
 final class LoginViewController: UIViewController {
-    let inputField = TextInputField()
-    let textFieldViewModel = TextInputFieldViewModel(
+    
+    // MARK: - Private Properties
+    
+    private let loginButton = UIButton()
+    private let imageView = UIImageView()
+    private let logo = UIImage(named: "logoVK")
+    private let inputField = TextInputField()
+    private let textFieldViewModel = TextInputFieldViewModel(
         title: "Введите номер",
         subTitle: "Ваш номер телефона будет использоваться для входа в аккаунт",
         placeholder: "Email или телефон"
     )
-    let loginButton = UIButton()
-    let imageView = UIImageView()
-    let logo = UIImage(named: "logoVK")
+    
+    // MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +30,8 @@ final class LoginViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         
-        loginButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        loginButton.setTitle("Продолжить", for: .normal)
-        loginButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
-        loginButton.layer.cornerRadius = 10
-        loginButton.clipsToBounds = true
-        
         addSubviews()
+        setupButton()
         setupConstraints()
         inputField.configure(text: textFieldViewModel)
     }
@@ -40,6 +39,17 @@ final class LoginViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func setupButton() {
+        loginButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
+        loginButton.setTitle("Продолжить", for: .normal)
+        loginButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
     }
     
     private func addSubviews() {
@@ -50,10 +60,10 @@ final class LoginViewController: UIViewController {
     }
     
     private func setupConstraints() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        [imageView, inputField, loginButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
+       
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.heightAnchor.constraint(equalToConstant: Constants.iconSize),
@@ -80,7 +90,7 @@ final class LoginViewController: UIViewController {
     
     @objc private func buttonTap() {
         guard let text = inputField.inputField.text, !text.isEmpty else {
-            showAlert(error: "Введите логин!")
+            showAlert(title: "Ошибка", message: "Введите логин!")
             return
         }
         

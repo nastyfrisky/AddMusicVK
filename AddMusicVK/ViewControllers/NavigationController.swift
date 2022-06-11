@@ -8,13 +8,9 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         pushViewController(LoginViewController(), animated: false)
     }
-
-    // MARK: - Private Methods
-
 }
 
