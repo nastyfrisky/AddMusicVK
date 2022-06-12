@@ -12,7 +12,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Private Properties
     
-    private let loginButton = UIButton()
+    private let loginButton = Button()
     private let imageView = UIImageView()
     private let logo = UIImage(named: "logoVK")
     private let inputField = TextInputField()
@@ -27,7 +27,6 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         imageView.contentMode = .scaleAspectFit
         
         addSubviews()
@@ -44,12 +43,16 @@ final class LoginViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupButton() {
-        loginButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        loginButton.setTitle("Продолжить", for: .normal)
-        loginButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
-        loginButton.layer.cornerRadius = 10
-        loginButton.clipsToBounds = true
+        loginButton.setupButtons(title: "Продолжить") {
+            guard let text = self.inputField.inputField.text, !text.isEmpty else {
+                self.showAlert(title: "Ошибка", message: "Введите логин!")
+                return
+            }
+
+            let login = UserLogin(login: text)
+            let nextVC = PasswordViewController(login: login)
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
     }
     
     private func addSubviews() {
@@ -86,17 +89,5 @@ final class LoginViewController: UIViewController {
             loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
-    }
-    
-    @objc private func buttonTap() {
-        guard let text = inputField.inputField.text, !text.isEmpty else {
-            showAlert(title: "Ошибка", message: "Введите логин!")
-            return
-        }
-        
-        let login = UserLogin(login: text)
-        let nextVC = PasswordViewController(login: login)
-        
-        navigationController?.pushViewController(nextVC, animated: true)
     }
 }

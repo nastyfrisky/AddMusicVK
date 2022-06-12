@@ -20,7 +20,7 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
         placeholder: "Введите пароль"
     )
     private let vkService = VkService()
-    private let passwordButton = UIButton()
+    private let passwordButton = Button()
     private let imageView = UIImageView()
     private let logo = UIImage(named: "logoVK")
     private let login: UserLogin
@@ -45,13 +45,11 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
         view.backgroundColor = .white
         
         vkService.webView.frame = view.frame
-        
         imageView.contentMode = .scaleAspectFit
-        
         inputField.inputField.isSecureTextEntry = true
         
         captchaTextInput.isHidden = true
-        captchaTextInput.captchaButton.addTarget(self, action: #selector(captchaButtonTap), for: .touchUpInside)
+        captchaTextInput.action = captchaButtonTap
         
         addSubviews()
         setupButton()
@@ -67,13 +65,9 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
     // MARK: - Public Methods
     
     func captchaRequested(image: UIImage, callback: VkServiceEnterRequestProtocol) {
-        imageView.isHidden = true
-        inputField.isHidden = true
-        passwordButton.isHidden = true
-        captchaTextInput.isHidden = false
-        
+        activityIndicator.stopAnimating()
+        setCaptchaInputVisibility(isHidden: false)
         captchaTextInput.captcha.image = image
-        
         self.callback = callback
     }
     
@@ -90,29 +84,17 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
             }
         case .wrongPassword:
             showAlert(title: "Ошибка", message: "Неверный пароль")
-            
-            passwordButton.isEnabled = true
-            passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-            
-            activityIndicator.stopAnimating()
+            setLoadingState(isEnabled: true)
         default:
             showAlert(title: "Ошибка", message: "Неизвестная ошибка")
-            
-            passwordButton.isEnabled = true
-            passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-            
-            activityIndicator.stopAnimating()
+            setLoadingState(isEnabled: true)
         }
     }
     
     func successSignIn() {
         let nextVC = UserIDViewController(vkService: vkService)
         navigationController?.pushViewController(nextVC, animated: true)
-        
-        passwordButton.isEnabled = true
-        passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-        
-        activityIndicator.stopAnimating()
+        setLoadingState(isEnabled: true)
     }
     
     func trackAddedSuccessfully() {}
@@ -124,12 +106,9 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
     // MARK: - Private Methods
     
     private func setupButton() {
-        passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        passwordButton.setTitle("Продолжить", for: .normal)
-        passwordButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
-        passwordButton.layer.cornerRadius = 10
-        passwordButton.clipsToBounds = true
+        passwordButton.setupButtons(title: "Продолжить") {
+            self.buttonTap()
+        }
     }
     
     private func addSubviews() {
@@ -172,37 +151,44 @@ final class PasswordViewController: UIViewController, VkServiceOutput {
             captchaTextInput.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.borderSpacing),
             captchaTextInput.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.borderSpacing),
             captchaTextInput.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            
         ])
     }
     
-    @objc private func buttonTap() {
+    private func buttonTap() {
         guard let text = inputField.inputField.text, !text.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите пароль!")
             return
         }
         
-        passwordButton.isEnabled = false
-        passwordButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
-        
-        activityIndicator.startAnimating()
-        
+        setLoadingState(isEnabled: false)
         vkService.delegate = self
         vkService.signIn(login: login.login, password: text)
     }
     
-    @objc private func captchaButtonTap() {
+    private func captchaButtonTap() {
         guard let text = captchaTextInput.inputField.text, !text.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите текст с картинки!")
             return
         }
         
-        captchaTextInput.isHidden = true
-        imageView.isHidden = false
-        inputField.isHidden = false
-        passwordButton.isHidden = false
-        
+        setCaptchaInputVisibility(isHidden: true)
         callback?.enter(response: captchaTextInput.inputField.text ?? "")
-       
+    }
+    
+    private func setLoadingState(isEnabled: Bool) {
+        passwordButton.isEnabled = isEnabled
+        
+        if isEnabled {
+            activityIndicator.stopAnimating()
+        } else {
+            activityIndicator.startAnimating()
+        }
+    }
+    
+    private func setCaptchaInputVisibility(isHidden: Bool) {
+        captchaTextInput.isHidden = isHidden
+        imageView.isHidden = !isHidden
+        inputField.isHidden = !isHidden
+        passwordButton.isHidden = !isHidden
     }
 }

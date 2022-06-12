@@ -18,7 +18,7 @@ final class UserIDViewController: UIViewController, VkServiceOutput {
         subTitle: "ID пользователя, музыку которого хотите добавить",
         placeholder: "id"
     )
-    private let idButton = UIButton()
+    private let idButton = Button()
     private let imageView = UIImageView()
     private let logo = UIImage(named: "logoVK")
     private let vkService: VkService
@@ -40,7 +40,6 @@ final class UserIDViewController: UIViewController, VkServiceOutput {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         imageView.contentMode = .scaleAspectFit
         
         addSubviews()
@@ -67,41 +66,26 @@ final class UserIDViewController: UIViewController, VkServiceOutput {
     func userPageLoadedSuccessfully() {
         let nextVC = TrackListViewController(vkService: vkService)
         navigationController?.pushViewController(nextVC, animated: true)
-        
-        idButton.isEnabled = true
-        idButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-        
-        activityIndicator.stopAnimating()
+        setLoadingState(isEnabled: true)
     }
     
     func processError(error: VkServiceProcessError) {
         switch error {
         case .wrongUserIdReceived, .notSignedIn:
             showAlert(title: "Ошибка", message: "Неверный ID!")
-            
-            idButton.isEnabled = true
-            idButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-            
-            activityIndicator.stopAnimating()
+            setLoadingState(isEnabled: true)
         default:
             showAlert(title: "Ошибка", message: "Неизвестная ошибка!")
-            print(error)
-            idButton.isEnabled = true
-            idButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-            
-            activityIndicator.stopAnimating()
+            setLoadingState(isEnabled: true)
         }
     }
     
     // MARK: - Private Methods
     
     private func setupButton() {
-        idButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        idButton.setTitle("Продолжить", for: .normal)
-        idButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
-        idButton.layer.cornerRadius = 10
-        idButton.clipsToBounds = true
+        idButton.setupButtons(title: "Продолжить") {
+            self.buttonTap()
+        }
     }
     
     private func addSubviews() {
@@ -140,18 +124,24 @@ final class UserIDViewController: UIViewController, VkServiceOutput {
         ])
     }
     
-    @objc private func buttonTap() {
+    private func buttonTap() {
         guard let text = inputField.inputField.text, !text.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите id пользователя!")
             return
         }
         
-        idButton.isEnabled = false
-        idButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
-        
-        activityIndicator.startAnimating()
-        
+        setLoadingState(isEnabled: false)
         vkService.delegate = self
         vkService.startMusicProcess(profile: text)
+    }
+    
+    private func setLoadingState(isEnabled: Bool) {
+        idButton.isEnabled = isEnabled
+        
+        if isEnabled {
+            activityIndicator.stopAnimating()
+        } else {
+            activityIndicator.startAnimating()
+        }
     }
 }

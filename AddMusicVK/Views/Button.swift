@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class Button: UIButton {
+    var action = {}
     override var isEnabled: Bool {
         didSet {
             if isEnabled {
@@ -21,7 +22,6 @@ final class Button: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
     }
     
@@ -29,12 +29,15 @@ final class Button: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupButtons(title: String, action: () -> Void) {
+    func setupButtons(title: String, action: @escaping () -> Void) {
         setTitle(title, for: .normal)
         layer.cornerRadius = 10
         clipsToBounds = true
-        
+        isEnabled = true
+        self.action = action
     }
     
-    @objc private func buttonTap(action: () -> Void) {}
+    @objc private func buttonTap() {
+       action()
+    }
 }

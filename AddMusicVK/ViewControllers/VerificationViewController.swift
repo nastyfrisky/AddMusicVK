@@ -18,7 +18,7 @@ final class VerificationViewController: UIViewController {
         subTitle: "Мы отправили SMS на номер",
         placeholder: "Код подтверждения"
     )
-    private let verificationButton = UIButton()
+    private let verificationButton = Button()
     private let imageView = UIImageView()
     private let logo = UIImage(named: "logoVK")
     private let callback: VkServiceEnterRequestProtocol
@@ -41,7 +41,6 @@ final class VerificationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         imageView.contentMode = .scaleAspectFit
         
         addSubviews()
@@ -66,12 +65,9 @@ final class VerificationViewController: UIViewController {
     // MARK: - Private Methods
     
     private func setupButton() {
-        verificationButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        verificationButton.setTitle("Продолжить", for: .normal)
-        verificationButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
-        
-        verificationButton.layer.cornerRadius = 10
-        verificationButton.clipsToBounds = true
+        verificationButton.setupButtons(title: "Продолжить") {
+            self.buttonTap()
+        }
     }
     
     private func addSubviews() {
@@ -110,7 +106,7 @@ final class VerificationViewController: UIViewController {
         ])
     }
     
-    @objc private func buttonTap() {
+    private func buttonTap() {
         guard let text = inputField.inputField.text, !text.isEmpty else {
             showAlert(title: "Ошибка", message: "Введите код!")
             return

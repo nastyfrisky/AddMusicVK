@@ -24,7 +24,6 @@
 		4DD44D1028392D3D00735B68 /* TextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D0F28392D3D00735B68 /* TextInputField.swift */; };
 		4DD44D12283933FF00735B68 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D11283933FF00735B68 /* PasswordViewController.swift */; };
 		4DD44D142839363400735B68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D132839363400735B68 /* LoginViewController.swift */; };
-		4DD44D17283A6E8800735B68 /* TextInputFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */; };
 		4DD44D19283AA7B000735B68 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D18283AA7B000735B68 /* CustomTextField.swift */; };
 		4DD44D1C283B807E00735B68 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D1B283B807E00735B68 /* Constants.swift */; };
 		4DD44D1E283BA01000735B68 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD44D1D283BA01000735B68 /* VerificationViewController.swift */; };
@@ -54,7 +53,6 @@
 		4DD44D0F28392D3D00735B68 /* TextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputField.swift; sourceTree = "<group>"; };
 		4DD44D11283933FF00735B68 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		4DD44D132839363400735B68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputFieldViewModel.swift; sourceTree = "<group>"; };
 		4DD44D18283AA7B000735B68 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4DD44D1B283B807E00735B68 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4DD44D1D283BA01000735B68 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 		4DD44D15283A6D7800735B68 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4DD44D16283A6E8800735B68 /* TextInputFieldViewModel.swift */,
 				4DD44D23283BA3BB00735B68 /* DataFlow.swift */,
 			);
 			path = Models;
@@ -282,7 +279,6 @@
 				4D7EC99028391CC200530873 /* AppDelegate.swift in Sources */,
 				4D1FEE27284BB795000268C7 /* CaptchaTextInput.swift in Sources */,
 				4DD44D19283AA7B000735B68 /* CustomTextField.swift in Sources */,
-				4DD44D17283A6E8800735B68 /* TextInputFieldViewModel.swift in Sources */,
 				4D968EA02843F86300E13D08 /* VkServiceProcessProtocol.swift in Sources */,
 				4DD44D22283BA05F00735B68 /* TrackListViewController.swift in Sources */,
 				4DD44D142839363400735B68 /* LoginViewController.swift in Sources */,

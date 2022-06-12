@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+struct TextInputFieldViewModel {
+    let title: String
+    let subTitle: String
+    let placeholder: String
+}
+
 final class TextInputField: UIStackView {
     
     // MARK: - Public Properties
@@ -34,8 +40,10 @@ final class TextInputField: UIStackView {
     func configure(text: TextInputFieldViewModel) {
         title.text = text.title
         subTitle.text = text.subTitle
-        inputField.placeholder = text.placeholder
-        inputField.attributedPlaceholder = NSAttributedString(string: text.placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+        inputField.attributedPlaceholder = NSAttributedString(
+            string: text.placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
+        )
     }
     
     // MARK: - Private Methods

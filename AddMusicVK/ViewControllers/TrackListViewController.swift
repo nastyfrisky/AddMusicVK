@@ -12,8 +12,8 @@ final class TrackListViewController: UIViewController, VkServiceOutput {
     
     // MARK: - Private Properties
     
-    private let changeIDButton = UIButton()
-    private let trackListButton = UIButton()
+    private let changeIDButton = Button()
+    private let trackListButton = Button()
     private let trackList = UITableView()
     private let numberOfTracks = UILabel()
     private let vkService: VkService
@@ -39,7 +39,6 @@ final class TrackListViewController: UIViewController, VkServiceOutput {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         numberOfTracks.textColor = .black
         
         addSubviews()
@@ -79,22 +78,12 @@ final class TrackListViewController: UIViewController, VkServiceOutput {
     }
     
     func trackNumberUpdated(newNumber: Int) {
-        activityIndicator.startAnimating()
-        
         numberOfTracks.text = "Загружено \(newNumber) песен..."
     }
     
     func tracksLoaded(tracksList: [Track], trackAddition: VkServiceAddTrackProtocol) {
-        activityIndicator.stopAnimating()
-        
         numberOfTracks.isHidden = true
-        
-        changeIDButton.isEnabled = true
-        trackListButton.isEnabled = true
-        
-        changeIDButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-        trackListButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1.0)
-        
+        setLoadingState(isEnabled: true)
         tracksInfo = tracksList
         self.trackAddition = trackAddition
         trackList.reloadData()
@@ -114,23 +103,15 @@ final class TrackListViewController: UIViewController, VkServiceOutput {
     }
     
     private func setupButtons() {
-        trackListButton.setTitle("Начать перенос", for: .normal)
-        changeIDButton.setTitle("Ввести другой ID", for: .normal)
+        setLoadingState(isEnabled: false)
         
-        trackListButton.layer.cornerRadius = 10
-        changeIDButton.layer.cornerRadius = 10
+        trackListButton.setupButtons(title: "Начать перенос") {
+            self.getTracksButtonTap()
+        }
         
-        trackListButton.clipsToBounds = true
-        changeIDButton.clipsToBounds = true
-        
-        trackListButton.addTarget(self, action: #selector(getTracksButtonTap), for: .touchUpInside)
-        changeIDButton.addTarget(self, action: #selector(changeIDButtonTap), for: .touchUpInside)
-        
-        trackListButton.isEnabled = false
-        changeIDButton.isEnabled = false
-        
-        trackListButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
-        changeIDButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
+        changeIDButton.setupButtons(title: "Ввести другой ID") {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     private func addSubviews() {
@@ -179,20 +160,20 @@ final class TrackListViewController: UIViewController, VkServiceOutput {
         ])
     }
     
-    @objc private func changeIDButtonTap() {
-        navigationController?.popViewController(animated: true)
+    private func getTracksButtonTap() {
+        setLoadingState(isEnabled: false)
+        trackAddition?.addTrack(trackId: tracksInfo[trackNumber].trackId)
     }
     
-    @objc private func getTracksButtonTap() {
-        trackListButton.isEnabled = false
-        changeIDButton.isEnabled = false
+    private func setLoadingState(isEnabled: Bool) {
+        trackListButton.isEnabled = isEnabled
+        changeIDButton.isEnabled = isEnabled
         
-        trackListButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
-        changeIDButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 0.5)
-        
-        activityIndicator.startAnimating()
-        
-        trackAddition?.addTrack(trackId: tracksInfo[trackNumber].trackId)
+        if isEnabled {
+            activityIndicator.stopAnimating()
+        } else {
+            activityIndicator.startAnimating()
+        }
     }
 }
 

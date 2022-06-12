@@ -12,9 +12,10 @@ final class CaptchaTextInput: UIStackView {
     
     // MARK: - Public Properties
     
+    var action = {}
     var captcha = UIImageView()
     let inputField = CustomTextField()
-    let captchaButton = UIButton()
+    let captchaButton = Button()
     
     // MARK: - Initializers
     
@@ -52,27 +53,19 @@ final class CaptchaTextInput: UIStackView {
         inputField.clipsToBounds = true
         inputField.placeholder = "Код с картинки"
         
-        captchaButton.backgroundColor = .init(red: 0.29, green: 0.45, blue: 0.65, alpha: 1)
-        captchaButton.setTitle("Отправить", for: .normal)
-        
-        captchaButton.layer.cornerRadius = 10
-        captchaButton.clipsToBounds = true
+        captchaButton.setupButtons(title: "Отправить") {
+            self.action()
+        }
     }
     
     private func setupConstraints() {
-        captcha.translatesAutoresizingMaskIntoConstraints = false
-        inputField.translatesAutoresizingMaskIntoConstraints = false
-        captchaButton.translatesAutoresizingMaskIntoConstraints = false
+        [captcha, inputField, captchaButton].forEach {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         NSLayoutConstraint.activate([
-            captcha.heightAnchor.constraint(equalToConstant: Constants.captchaHeight)
-        ])
-        
-        NSLayoutConstraint.activate([
-            inputField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight)
-        ])
-        
-        NSLayoutConstraint.activate([
+            captcha.heightAnchor.constraint(equalToConstant: Constants.captchaHeight),
+            inputField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
             captchaButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
         ])
     }

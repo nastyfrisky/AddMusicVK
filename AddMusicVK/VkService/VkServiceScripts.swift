@@ -36,13 +36,13 @@ enum VkServiceScripts {
     
     static let enterCode = """
     (() => {
-        document.getElementsByName("token")[0].dispatchEvent(new Event('focus', {
+        document.getElementsByName("otp")[0].dispatchEvent(new Event('focus', {
             bubbles: true,
             cancelable: true,
         }));
     
-        document.getElementsByName("token")[0].value = "FIELD_VALUE"
-        document.getElementsByName("token")[0].dispatchEvent(new Event('input', {
+        document.getElementsByName("otp")[0].value = "FIELD_VALUE"
+        document.getElementsByName("otp")[0].dispatchEvent(new Event('input', {
             bubbles: true,
             cancelable: true,
         }));
@@ -98,7 +98,7 @@ enum VkServiceScripts {
         let checkPageState = () => {
             let isLoginFormLoaded = typeof document.getElementsByName("login")[0] !== 'undefined';
             let isPasswordFormLoaded = typeof document.getElementsByName("password")[0] !== 'undefined';
-            let isCodeFormLoaded = typeof document.getElementsByName("token")[0] !== 'undefined';
+            let isCodeFormLoaded = typeof document.getElementsByName("otp")[0] !== 'undefined';
             let isErrorPresented = typeof document.getElementsByClassName("vkc__TextField__errorIcon")[0] !== 'undefined';
             let isSignedIn = typeof document.getElementsByClassName("owner_panel")[0] !== 'undefined';
             

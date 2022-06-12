@@ -10,8 +10,3 @@ import Foundation
 struct UserLogin {
     var login: String
 }
-
-struct UserData {
-    let login: String
-    let password: String
-}
